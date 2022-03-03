@@ -44,7 +44,9 @@ module.exports = {
       name: "remote_react",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        "./Search": "./src/Search",
+      },
       shared: {
         ...deps,
         react: {
