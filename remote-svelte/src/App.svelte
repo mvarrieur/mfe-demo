@@ -1,6 +1,7 @@
+<script>
+  import Show from "./Show";
+</script>
+
 <div class="mt-10 text-3xl mx-auto max-w-6xl">
-  <div>Name: remote-svelte</div>
-  <div>Framework: svelte</div>
-  <div>Language: JavaScript</div>
-  <div>CSS: Tailwind</div>
+  <Show />
 </div>

@@ -45,6 +45,7 @@ module.exports = {
       filename: "remoteEntry.js",
       remotes: {
         remote_react: "remote_react@http://localhost:8081/remoteEntry.js",
+        remote_svelte: "remote_svelte@http://localhost:8082/remoteEntry.js",
       },
       exposes: {},
       shared: {

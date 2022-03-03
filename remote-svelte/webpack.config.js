@@ -76,7 +76,9 @@ module.exports = {
       name: "remote_svelte",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        "./Show": "./src/Show.svelte",
+      },
       shared: {
         ...deps,
         "solid-js": {
