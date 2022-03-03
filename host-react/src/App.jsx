@@ -8,9 +8,17 @@ const App = () => {
   const [pokemon, setPokemon] = useState({});
 
   return (
-    <div className="mt-10 text-3xl mx-auto max-w-6xl">
-      <h1>Host React App</h1>
-      <Search onSuccess={(data) => setPokemon(data)} />
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl">Host React App</h1>
+
+      <div className="flex">
+        <div className="pr-2">
+          <Search onSuccess={(data) => setPokemon(data)} />
+        </div>
+        <div className="flex-grow pl-2">
+          Content
+        </div>
+      </div>
     </div>
   )
 };
