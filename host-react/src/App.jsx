@@ -25,7 +25,7 @@ const App = () => {
 
       <div className="flex">
         <div className="pr-2">
-          <Search onSuccess={(data) => setPokemon(data)} />
+          <Search onSuccess={(data) => {setPokemon(data)}} />
         </div>
         <div className="flex-grow pl-2">
           <div ref={divRef} />
