@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8" />
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code,
+      .remark-inline-code {
+        font-family: 'Ubuntu Mono';
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+    class: center, middle
+
+    # Microfrontends and Module Federation
+
+    ---
+
+    # Agenda
+
+    1. Microfrontends
+    2. Module Federation
+    3. Live Demo?
+
+    ---
+
+    # Microfrontends
+
+    Microfrontends are small, modular, and highly reusable components that can be used to build a complex application.
+
+    * Angular components
+    * React components
+    * etc...
+    * Composition of those components
+    * Remember frames & _target?
+
+    ---
+
+    # Reddit
+
+    ![Reddit screenshot with boxes drawn over components](./images/reddit.png)
+
+    ---
+
+    # Facebook
+
+    ![Facebook screenshot with boxes drawn over components](./images/facebook.png)
+
+    ---
+
+    # Pros of Microfrontends
+
+    * Team autonomy
+    * Technology agnostic
+    * Reusability
+    * Simpler codebases
+    * Less inter-team dependencies
+    * Speed of development
+
+    ---
+
+    # Cons of Microfrontends
+
+    * Delivery size
+    * State management
+    * Development environment might not match production environment
+    * Someone needs to coordinate all these pieces in the host app
+    * Testing complexity -- where should it happen?
+
+    ![Chart showing JavaScript LOC + Component Communication over different app types](./images/graph.png)
+
+    ---
+
+    # Module Federation
+
+    * Introduced in Webpack 5 _(around October 2020)_
+    * Just a different way to consume ES Modules (or really any type of module you can make Webpack understand)
+    * Host/remote architecture. Host is the app that uses the module, and remote is the app that hosts the module.
+
+    ---
+
+    # Resources
+
+    * Martin Fowler - [Micro Frontends](https://martinfowler.com/articles/micro-frontends.html)
+    * Jack Herrington's [module federation YouTube playlist](https://www.youtube.com/playlist?list=PLNqp92_EXZBLr7p7hn6IYa1YPNs4yJ1t1)
+    * Colin Eberhardt - [You probably don't need a micro-frontend](https://blog.scottlogic.com/2021/02/17/probably-dont-need-microfrontends.html)
+    * [Webpack module federation documentation](https://webpack.js.org/concepts/module-federation/)
+    * [Module federation examples repo](https://github.com/module-federation/module-federation-examples)
+
+    ---
+
+    class: center, middle
+
+    # Questions?
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
