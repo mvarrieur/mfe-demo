@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition';
   import starOutline from './images/star-outline.svg';
   import star from './images/star.svg';
   export let pokemon = { sprites: {} };
@@ -19,10 +20,10 @@
   {#if pokemon.name}
     <h1 class="text-2xl text-center capitalize font-bold mb-2">{pokemon.name} <span class="text-slate-500">#{pokemon.id}</span></h1>
   {/if}
-  <div class="w-full max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl">
+  <div class="w-full max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl transition-colors" class:bg-yellow-50={favorited}>
     {#if pokemon.name}
-      <div class="relative">
-        <button class="absolute right-0 top-0 w-8 h-8 fill-gray-500" class:fill-yellow-500={favorited} on:click={handleFavoriteClick(pokemon)}>
+      <div transition:fade class="relative">
+        <button class="absolute right-0 top-0 w-8 h-8 fill-gray-500 transition-colors duration-300 hover:fill-gray-800" class:fill-yellow-500={favorited} class:hover:fill-yellow-700={favorited} on:click={handleFavoriteClick(pokemon)}>
           {#if favorited}
             {@html star}
           {:else}

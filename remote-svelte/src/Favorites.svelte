@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition';
   export let favorites = {};
 </script>
 
@@ -7,7 +8,7 @@
   <div class="w-full max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl">
       <ul>
         {#each Object.values(favorites) as favorite}
-          <li class="capitalize">{favorite.name} <span class="text-slate-500 text-xs">(#{favorite.id})</span></li>
+          <li transition:fade class="capitalize">{favorite.name} <span class="text-slate-500 text-xs">(#{favorite.id})</span></li>
         {/each}
       </ul>
   </div>
