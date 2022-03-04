@@ -9,17 +9,19 @@
     .filter(k => typeof(pokemon.sprites[k]) === 'string') // This object has nested objects inside we dont want
     .filter(k => pokemon.sprites[k] && pokemon.sprites[k].includes('http')) // some values are null, make sure there is a URL
     .reduce((acc, k) => {
-      acc.unshift(pokemon.sprites[k]);
+      acc.unshift({ src: pokemon.sprites[k], title: k });
 
       return acc;
     }, []);
 </script>
 
 <div class="flex flex-col items-center justify-center min-h-screen from-teal-100 via-teal-300 to-teal-500 bg-gradient-to-br p-8">
+  {#if pokemon.name}
+    <h1 class="text-2xl text-center capitalize font-bold mb-2">{pokemon.name} <span class="text-slate-500">#{pokemon.id}</span></h1>
+  {/if}
   <div class="w-full max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl">
     {#if pokemon.name}
       <div class="relative">
-        <h1 class="text-2xl text-center capitalize font-bold">{pokemon.name} <span class="text-slate-500">#{pokemon.id}</span></h1>
         <button class="absolute right-0 top-0 w-8 h-8 fill-gray-500" class:fill-yellow-500={favorited} on:click={handleFavoriteClick(pokemon)}>
           {#if favorited}
             {@html star}
@@ -30,7 +32,7 @@
         </button>
         <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon.name} class="w-full h-auto" />
         {#each sprites as sprite}
-          <img class="inline" src={sprite} alt={`${pokemon.name} sprite`} />
+          <img class="inline" src={sprite.src} alt={`${pokemon.name} sprite`} title={sprite.title} />
         {/each}
       </div>
       
