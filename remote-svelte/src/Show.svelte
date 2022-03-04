@@ -3,6 +3,7 @@
   import star from './images/star.svg';
   export let pokemon = { sprites: {} };
   export let favorited = false;
+  export let handleFavoriteClick = () => {};
 
   $: sprites = Object.keys((pokemon.sprites || {}))
     .filter(k => typeof(pokemon.sprites[k]) === 'string') // This object has nested objects inside we dont want
@@ -19,7 +20,7 @@
     {#if pokemon.name}
       <div class="relative">
         <h1 class="text-2xl text-center capitalize font-bold">{pokemon.name} <span class="text-slate-500">#{pokemon.id}</span></h1>
-        <button class="absolute right-0 top-0 w-8 h-8 fill-gray-500" class:fill-yellow-500={favorited}>
+        <button class="absolute right-0 top-0 w-8 h-8 fill-gray-500" class:fill-yellow-500={favorited} on:click={handleFavoriteClick(pokemon)}>
           {#if favorited}
             {@html star}
           {:else}

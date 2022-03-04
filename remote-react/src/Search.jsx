@@ -19,8 +19,9 @@ const Search = ({ onSuccess }) => {
   };
 
   return (
-    <div className="search">
+    <div className="flex flex-col items-center justify-center min-h-screen from-pink-100 via-pink-300 to-pink-500 bg-gradient-to-br p-8">
       <form onSubmit={handleSubmit}>
+        <h1 className="font-bold text-xl">Search</h1>
         <input
           type="text"
           value={search}

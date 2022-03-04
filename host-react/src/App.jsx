@@ -2,22 +2,44 @@ import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import Search from 'remote_react/Search';
 import Show from 'remote_svelte/Show';
+import Favorites from 'remote_svelte/Favorites';
 
 import "./index.scss";
 
 const App = () => {
   const [pokemon, setPokemon] = useState({});
-  const divRef = useRef(null);
+  const [favorites, setFavorites] = useState({});
+  const showDivRef = useRef(null);
+  const favoritesDivRef = useRef(null);
   const [showComponent, setShowComponent] = useState({ $set: () => {}});
+  const [favoritesComponent, setFavoritesComponent] = useState({ $set: () => {}});
+
+  const toggleFavorite = (pokemon) => {
+    const { id } = pokemon;
+    const newFavorites = { ...favorites };
+    if (id in favorites) {
+      console.log('id in favorites, deleting')
+      delete newFavorites[id];
+    } else {
+      console.log('adding to favorites');
+      newFavorites[id] = pokemon;
+    }
+
+    setFavorites(newFavorites);
+  }
 
   useEffect(() => {
-    const comp = new Show({ target: divRef.current });
-    setShowComponent(comp);
+    const showComponent = new Show({ target: showDivRef.current, props: { handleFavoriteClick: toggleFavorite } });
+    setShowComponent(showComponent);
+
+    const favoritesComponent = new Favorites({ target: favoritesDivRef.current });
+    setFavoritesComponent(favoritesComponent);
   }, []);
 
   useEffect(() => {
-    showComponent && showComponent.$set({ pokemon });
-  }, [pokemon]);
+    showComponent && showComponent.$set({ pokemon, favorited: pokemon.id in favorites, handleFavoriteClick: toggleFavorite });
+    favoritesComponent && favoritesComponent.$set({ favorites });
+  }, [pokemon, favorites]);
 
   return (
     <div className="container mx-auto p-4">
@@ -27,9 +49,9 @@ const App = () => {
         <div className="pr-2">
           <Search onSuccess={(data) => {setPokemon(data)}} />
         </div>
-        <div className="flex-grow pl-2">
-          <div ref={divRef} />
+        <div className="flex-grow pl-2" ref={showDivRef}>
         </div>
+        {favorites && <div className="pl-2" ref={favoritesDivRef}></div>}
       </div>
     </div>
   )

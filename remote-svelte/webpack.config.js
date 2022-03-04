@@ -82,6 +82,7 @@ module.exports = {
       remotes: {},
       exposes: {
         "./Show": "./src/Show.svelte",
+        "./Favorites": "./src/Favorites.svelte"
       },
       shared: {
         ...deps,
