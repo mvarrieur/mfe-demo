@@ -11,7 +11,7 @@ const App = () => {
   const [showComponent, setShowComponent] = useState({ $set: () => {}});
 
   useEffect(() => {
-    const comp = new Show({ target: divRef.current, props: { pokemon } });
+    const comp = new Show({ target: divRef.current });
     setShowComponent(comp);
   }, []);
 
