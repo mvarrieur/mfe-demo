@@ -4,8 +4,10 @@ const pokeApiBase = 'https://pokeapi.co/api/v2/pokemon/';
 
 const Search = ({ onSuccess }) => {
   const [search, setSearch] = useState('');
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
+    setError(null);
     setSearch(e.target.value);
   };
 
@@ -15,6 +17,9 @@ const Search = ({ onSuccess }) => {
       .then((res) => res.json())
       .then((data) => {
         onSuccess(data);
+      })
+      .catch(e => {
+        setError('Pokemon not found');
       });
   };
 
@@ -29,6 +34,7 @@ const Search = ({ onSuccess }) => {
           placeholder="Search for a pokemon"
           className='p-3 mt-2 mb-4 w-full bg-slate-200 rounded'
         />
+        {error && <p className="text-red-500">{error}</p>}
         <button type="submit" className="py-3 px-6 my-2 bg-emerald-500 text-white font-medium rounded hover:bg-indigo-500 cursor-pointer ease-in-out duration-300">Search!</button>
       </form>
     </div>
